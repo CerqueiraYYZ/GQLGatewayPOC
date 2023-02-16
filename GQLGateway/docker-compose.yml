@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  gatewayapi:
+    image: ${DOCKER_REGISTRY-}gatewayapi
+    build:
+      context: .
+      dockerfile: GatewayAPI/Dockerfile
+    networks:
+      test:
+        ipv4_address: 10.1.0.100
+  networks:
+    test:
+        driver: bridge
+        ipam:
+            driver: default
+            config:
+                - subnet: 10.1.0.0/24 
